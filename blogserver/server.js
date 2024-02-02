@@ -7,7 +7,7 @@ app.use(express.json())
 app.use(cors());
 
 app.get('/',(req,res)=>{
-    res.send("server started")
+    res.redirect("https://65bce6e40162f4859d9edd06--effervescent-baklava-0dbcf0.netlify.app/")
 })
 
 app.use('/blog',router)

@@ -6,25 +6,18 @@ export const Posts = () => {
     const navigate = useNavigate();
     const [blogsdata, setBlogsdata] = useState([]);
     useEffect(()=>{
-        
-        setBlogsdata([
-            {
-                heading:"BlogHead",
-                content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit culpa consectetur nam perspiciatis minima voluptatum quasi, delectus aperiam provident adipisci! Reiciendis hic quas totam vero quis. Vero esse tempore perferendis?"
-            },
-            {
-                heading:"BlogHead",
-                content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit culpa consectetur nam perspiciatis minima voluptatum quasi, delectus aperiam provident adipisci! Reiciendis hic quas totam vero quis. Vero esse tempore perferendis?"
-            },
-            {
-                heading:"BlogHead",
-                content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit culpa consectetur nam perspiciatis minima voluptatum quasi, delectus aperiam provident adipisci! Reiciendis hic quas totam vero quis. Vero esse tempore perferendis?"
-            },
-            {
-                heading:"BlogHead",
-                content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit culpa consectetur nam perspiciatis minima voluptatum quasi, delectus aperiam provident adipisci! Reiciendis hic quas totam vero quis. Vero esse tempore perferendis?"
-            }   
-        ])
+        const user = localStorage.username
+        const handlepostname = async() =>{
+            if(user.length>0 ){
+                const res = await fetch(`https://blogserver-c37z.onrender.com/blog/${user}`,{
+                    method:"GET",
+                })
+                const data = await res.json()
+                setBlogsdata(data);
+                console.log(data);
+            }
+        }
+        handlepostname()
     },[])
 return (
     <div
@@ -111,7 +104,7 @@ return (
                             justifyContent:'space-between'
                         }} 
                         >
-                            <h3>{item.heading}</h3>
+                            <h3>{item.title}</h3>
                             <span
                                 style={{display:'flex',gap:'1%'}}
                             >
@@ -120,7 +113,7 @@ return (
                             </span>
                         </span>
                         <span>
-                            {item.content}
+                            {item.description}
                         </span>
 
                     </div>

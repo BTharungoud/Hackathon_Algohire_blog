@@ -26,8 +26,7 @@ export const NewPost = () => {
                 title: title,
                 description:description
             }
-            console.log(obj)
-            const res = await fetch("http://localhost:9000/blog/newpost",{
+            const res = await fetch("https://blogserver-c37z.onrender.com/blog/newpost",{
                 method:"POST",
                 headers:{
                     'Content-Type': 'application/json',
